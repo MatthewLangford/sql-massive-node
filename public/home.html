@@ -1,0 +1,9 @@
+<button ng-click="getproducts()">Get Products</button>
+<ul style="list-style-type: none" ng-repeat="p in products">
+    <li>{{p.name}}</li>
+    <li>{{p.description}}</li>
+    <li>{{p.price}}</li>
+    <li>{{p.imageUrl}}</li><br/>
+</ul><br/>
+
+<input type="text" ng-model="search"><button ng-click="findProductById(search)">Find Product by id</button>
