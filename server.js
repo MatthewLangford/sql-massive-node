@@ -1,13 +1,16 @@
 let express = require('express');
 let bodyParser = require('body-parser');
 let massive = require('massive');
-let pw = require('pw');
-let connectionString = 'postgres://postgres:'+ pw.pw +'@localhost/sandbox';
-let massiveInstance = massive.connectSync({connectionString: connectionString});
+
 let app = module.exports = express();
+
+// let connectionString = 'postgres://postgres:'+ pw.pw +'@localhost/sandbox';
+// let massiveInstance = massive.connectSync({connectionString: connectionString});
+
+
 let productsCtrl = require('./productsCtrl');
 
-app.set('db', massiveInstance);
+// app.set('db', massiveInstance);
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 let db = app.get('db');

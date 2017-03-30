@@ -1,9 +1,30 @@
-<button ng-click="getproducts()">Get Products</button>
-<ul style="list-style-type: none" ng-repeat="p in products">
-    <li>{{p.name}}</li>
-    <li>{{p.description}}</li>
+<form ng-submit="addProduct({name: name, description: description, price: price, imageUrl: imageUrl})">
+    <h3>Add a Product</h3>
+    <input type="text" ng-model="name" placeholder="Name of product"><br/>
+    <input type="text" ng-model="description" placeholder="description"><br/>
+    <input type="text" ng-model="price" placeholder="price"><br/>
+    <input type="text" ng-model="imageUrl" placeholder="imageUrl"><br/>
+    <button ng-disabled="!price || !name || !description">Add Product</button>
+</form><br/>
+
+<h3>Look at All products</h3>
+<button ng-click="getproducts(); hide = true">Get Products</button><button ng-click="hide = false">Hide all Products</button>
+<ul ng-show="hide" style="list-style-type: none" ng-repeat="p in products">
+    <li>Name: {{p.name}}</li>
+    <li>Desc: {{p.description}}</li>
     <li>{{p.price}}</li>
-    <li>{{p.imageUrl}}</li><br/>
+    <img ng-src="{{p.imageUrl}}"><br/><br/>
+    <button style="background-color: #e10000;" ng-click="deleteProduct($index)">Remove from list</button>
 </ul><br/>
 
+<h3>Find Product by id</h3>
 <input type="text" ng-model="search"><button ng-click="findProductById(search)">Find Product by id</button>
+<ul style="list-style-type: none">
+    <li>{{found.name}}</li>
+    <li>{{found.description}}</li>
+    <li>{{found.price}}</li>
+    <img ng-src="{{found.imageUrl}}" alt="">
+</ul><br/>
+
+<h3>Delete Product</h3>
+<input type="text" ng-model="del"> <button ng-click="deleteProduct(del)" style="background-color: #e10000;">Delete</button>
